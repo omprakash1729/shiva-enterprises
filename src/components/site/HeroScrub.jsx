@@ -69,7 +69,9 @@ export function HeroScrub() {
     mq.addEventListener("change", onChange);
     return () => mq.removeEventListener("change", onChange);
   }, []);
-  const videoSrc = isMobile ? "/media/hero-mobile.mp4" : "/media/hero-desktop.mp4";
+ const videoSrc = isMobile
+  ? "/media/hero-mobile-scrub.mp4"
+  : "/media/hero-desktop-scrub.mp4";
   const posterSrc = isMobile ? "/media/hero-poster-mobile.jpg" : "/media/hero-poster-desktop.jpg";
   useEffect(() => {
     const wrap = wrapRef.current;
