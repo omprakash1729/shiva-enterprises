@@ -19,7 +19,7 @@ const PRODUCTS = [
     ],
     cta: "Explore Bird Protection Nets",
     href: "#nets",
-    detailUrl: "/services/pigeon-safety-nets",
+    detailUrl: "/services/bird-protection-nets",
     whatsappText:
       "Hi, I am interested in Invisible Bird Protection Nets for my balcony in Chennai. Please share details and pricing.",
     image: netsImg,

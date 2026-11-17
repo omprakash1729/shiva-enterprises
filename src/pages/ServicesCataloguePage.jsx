@@ -1,19 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { SERVICES } from "@/data/services";
-import { ArrowRight, MessageCircle, Phone, Sparkles } from "lucide-react";
+import { ArrowRight, MessageCircle, Phone } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
 import { cn } from "@/lib/utils";
 import catalogueHeroImg from "@/assets/projects/vertical-grill-13.webp";
 
-const CATEGORIES = [
-  "All",
-  "Invisible Grills",
-  "Bird Protection",
-  "Terrace & Open Space",
-  "Balcony Enhancements",
-  "Services",
-];
+const CATEGORIES = ["All", "Invisible Grills", "Bird Protection", "Safety Nets", "Terrace & Turf"];
 
 export function ServicesCataloguePage() {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -23,25 +16,22 @@ export function ServicesCataloguePage() {
 
   return (
     <div className="bg-background">
-      {/* Premium Hero with Photographic Background & Navy Overlay */}
+      {/* Hero Header */}
       <section className="relative overflow-hidden bg-night text-night-foreground pt-32 pb-20 lg:pt-40 lg:pb-28">
-        {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
             src={catalogueHeroImg}
             alt="SHIVA ENTERPRISES Balcony Protection Projects"
-            className="h-full w-full object-cover object-center"
+            className="h-full w-full object-cover object-center opacity-30"
           />
-          {/* Subtle Deep Navy Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-night/95 via-night/85 to-night/65" />
-          <div className="absolute inset-0 bg-radial-at-t from-transparent via-night/50 to-night" />
+          <div className="absolute inset-0 bg-gradient-to-r from-night via-night/95 to-night/85" />
         </div>
 
         <div className="relative z-10 mx-auto max-w-7xl px-5 lg:px-10">
           <Reveal className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-primary mb-4 backdrop-blur-xs">
-              <Sparkles className="h-3.5 w-3.5" /> Service Catalogue
-            </div>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-3">
+              Services Catalogue
+            </p>
             <h1 className="font-display text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
               Engineered Safety & Aesthetic Balcony Solutions
             </h1>
@@ -57,7 +47,7 @@ export function ServicesCataloguePage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-[#25D366]/25 transition-transform hover:scale-105 hover:bg-[#20ba59]"
               >
-                <MessageCircle className="h-4 w-4" /> Quick WhatsApp Enquiry
+                <MessageCircle className="h-4 w-4" /> Quick WhatsApp Consultation
               </a>
               <a
                 href="tel:+919036657577"
@@ -92,34 +82,32 @@ export function ServicesCataloguePage() {
             ))}
           </div>
 
-          {/* Simple, Refined 3-Column Product Grid */}
+          {/* Simple, Refined 3-Column Product Grid:
+              IMAGE → SOFT WHITE GRADIENT TRANSITION → SERVICE INFORMATION */}
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {filteredServices.map((service, index) => (
               <Reveal key={service.id} delay={(index % 3) * 60}>
                 <div className="group flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-border bg-white shadow-xs transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                   <div>
-                    {/* Clickable Image with Subtle Overlay */}
+                    {/* Large Image with Soft White Gradient Transition */}
                     <Link
                       to={`/services/${service.slug}`}
-                      className="relative block aspect-[4/3] w-full overflow-hidden bg-muted"
+                      className="relative block aspect-[16/11] w-full overflow-hidden bg-muted"
                     >
                       <img
                         src={service.heroImage}
                         alt={service.name}
                         width={800}
-                        height={600}
+                        height={550}
                         loading="lazy"
                         className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-end p-4">
-                        <span className="text-xs font-semibold text-white flex items-center gap-1">
-                          View details <ArrowRight className="h-3.5 w-3.5" />
-                        </span>
-                      </div>
+                      {/* Soft white gradient transitioning down into the card body */}
+                      <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white via-white/40 to-transparent" />
                     </Link>
 
-                    {/* Card Body: Title & 1-2 Lines Description */}
-                    <div className="p-6">
+                    {/* Service Information Area */}
+                    <div className="p-6 pt-2">
                       <Link to={`/services/${service.slug}`}>
                         <h2 className="font-display text-xl font-bold tracking-tight text-foreground transition-colors group-hover:text-primary">
                           {service.name}
@@ -128,18 +116,25 @@ export function ServicesCataloguePage() {
                       <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground line-clamp-2">
                         {service.description}
                       </p>
+
+                      <Link
+                        to={`/services/${service.slug}`}
+                        className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-primary transition-colors hover:text-primary/80"
+                      >
+                        Explore specifications & photos <ArrowRight className="h-3.5 w-3.5" />
+                      </Link>
                     </div>
                   </div>
 
-                  {/* WhatsApp Enquiry Button */}
+                  {/* Clean WhatsApp Enquiry Button */}
                   <div className="p-6 pt-0">
                     <a
                       href={`https://wa.me/919036657577?text=${encodeURIComponent(
-                        `Hi, I'm interested in ${service.name}. I'd like to know more about the installation and pricing.`,
+                        `Hi SHIVA ENTERPRISES, I'm interested in ${service.name}. I'd like to know more about the installation and pricing.`,
                       )}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#25D366] px-4 py-3 text-sm font-semibold text-white shadow-xs transition-all duration-200 hover:bg-[#20ba59] hover:shadow-md"
+                      className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#25D366] px-4 py-3 text-sm font-semibold text-white shadow-xs transition-all duration-200 hover:bg-[#20ba59] hover:shadow-md cursor-pointer"
                     >
                       <MessageCircle className="h-4 w-4" />
                       WhatsApp Enquiry
@@ -152,34 +147,37 @@ export function ServicesCataloguePage() {
         </div>
       </section>
 
-      {/* Architectural Consultation Section */}
-      <section className="mx-auto max-w-7xl px-5 lg:px-10 pb-20">
-        <div className="rounded-3xl bg-night p-8 text-night-foreground sm:p-12 border border-white/10 shadow-2xl">
-          <div className="grid items-center gap-8 lg:grid-cols-12">
-            <div className="lg:col-span-8">
-              <span className="eyebrow text-night-foreground/50">Free Site Assessment</span>
-              <h3 className="mt-3 font-display text-2xl font-bold tracking-tight text-white sm:text-3xl lg:text-4xl">
-                Need help deciding between Nets and Invisible Grills?
-              </h3>
-              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-night-foreground/75 sm:text-base">
-                Our SHIVA ENTERPRISES balcony specialists will visit your apartment or villa in
-                Chennai to measure openings, assess safety factors, and provide a transparent,
-                customized quote on the spot.
+      {/* Trust & Guarantee Banner */}
+      <section className="border-t border-border bg-muted/30 py-16">
+        <div className="mx-auto max-w-7xl px-5 lg:px-10">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="rounded-xl border border-border bg-white p-6 shadow-xs">
+              <p className="font-display text-lg font-bold text-foreground">Grade 316 Marine SS</p>
+              <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
+                Maximum anti-rust protection designed for coastal Chennai humidity.
               </p>
             </div>
-            <div className="flex flex-col gap-3 sm:flex-row lg:col-span-4 lg:flex-col lg:items-end">
-              <a
-                href="tel:+919036657577"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-bold text-primary-foreground shadow-md transition-colors hover:bg-primary/90"
-              >
-                <Phone className="h-4 w-4" /> Call +91 90366 57577
-              </a>
-              <Link
-                to="/#contact"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-white/10"
-              >
-                Book Free Site Inspection
-              </Link>
+            <div className="rounded-xl border border-border bg-white p-6 shadow-xs">
+              <p className="font-display text-lg font-bold text-foreground">
+                220+ kg Tensile Tested
+              </p>
+              <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
+                Independently tested high-tensile core for family and pet safety.
+              </p>
+            </div>
+            <div className="rounded-xl border border-border bg-white p-6 shadow-xs">
+              <p className="font-display text-lg font-bold text-foreground">
+                5-Year Written Warranty
+              </p>
+              <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
+                Official warranty certificate issued immediately upon handover.
+              </p>
+            </div>
+            <div className="rounded-xl border border-border bg-white p-6 shadow-xs">
+              <p className="font-display text-lg font-bold text-foreground">Same-Day Site Visit</p>
+              <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
+                Free laser measurement and on-site guidance across all of Chennai.
+              </p>
             </div>
           </div>
         </div>

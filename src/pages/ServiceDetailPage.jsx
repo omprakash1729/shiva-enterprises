@@ -1,16 +1,9 @@
 import { useEffect } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import { SERVICES } from "@/data/services";
-import {
-  ArrowRight,
-  CheckCircle2,
-  MapPin,
-  MessageCircle,
-  Phone,
-  ShieldCheck,
-  Sparkles,
-} from "lucide-react";
+import { ArrowRight, CheckCircle2, MapPin, MessageCircle, Phone } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
+import { EnquiryForm } from "@/components/site/EnquiryForm";
 
 export function ServiceDetailPage() {
   const { slug } = useParams();
@@ -28,18 +21,15 @@ export function ServiceDetailPage() {
 
   return (
     <div className="bg-background">
-      {/* Premium Hero with Photographic Background & Dark Blue Gradient */}
+      {/* Hero Header with Background Image & Gradient */}
       <section className="relative overflow-hidden bg-night text-night-foreground pt-32 pb-20 lg:pt-40 lg:pb-28">
-        {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
             src={service.heroImage}
             alt={service.name}
-            className="h-full w-full object-cover object-center"
+            className="h-full w-full object-cover object-center opacity-30"
           />
-          {/* Deep Navy/Blue Atmospheric Gradient */}
-          <div className="absolute inset-0 bg-gradient-to-r from-night via-night/85 to-night/70" />
-          <div className="absolute inset-0 bg-gradient-to-t from-night via-transparent to-black/30" />
+          <div className="absolute inset-0 bg-gradient-to-r from-night via-night/95 to-night/80" />
         </div>
 
         <div className="relative z-10 mx-auto max-w-7xl px-5 lg:px-10">
@@ -63,9 +53,9 @@ export function ServiceDetailPage() {
           </nav>
 
           <Reveal className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-primary mb-4 backdrop-blur-xs">
-              <Sparkles className="h-3.5 w-3.5" /> {service.category}
-            </div>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-3">
+              {service.category}
+            </p>
             <h1 className="font-display text-3xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
               {service.name}
             </h1>
@@ -80,7 +70,7 @@ export function ServiceDetailPage() {
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <a
                 href={`https://wa.me/919036657577?text=${encodeURIComponent(
-                  `Hi, I'm interested in ${service.name}. I'd like to know more about the installation and pricing.`,
+                  `Hi SHIVA ENTERPRISES, I'm interested in ${service.name}. I'd like to know more about the installation and pricing.`,
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -106,8 +96,10 @@ export function ServiceDetailPage() {
             {/* Left: Key Specifications */}
             <div className="lg:col-span-6">
               <Reveal>
-                <p className="eyebrow text-primary">Technical Specifications</p>
-                <h2 className="mt-3 font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-2">
+                  Technical Specifications
+                </p>
+                <h2 className="font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
                   Engineered for Reliability & Longevity
                 </h2>
                 <div className="mt-8 divide-y divide-border rounded-2xl border border-border bg-white p-6 shadow-xs">
@@ -129,8 +121,10 @@ export function ServiceDetailPage() {
 
               {/* Suitable Spaces */}
               <Reveal delay={100} className="mt-12">
-                <p className="eyebrow text-muted-foreground">Applications</p>
-                <h3 className="mt-2 font-display text-xl font-bold text-foreground">
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground mb-2">
+                  Applications
+                </p>
+                <h3 className="font-display text-xl font-bold text-foreground">
                   Where This System is Installed
                 </h3>
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
@@ -147,11 +141,13 @@ export function ServiceDetailPage() {
               </Reveal>
             </div>
 
-            {/* Right: Key Advantages & Fast Quote */}
+            {/* Right: Key Advantages */}
             <div className="lg:col-span-6">
               <Reveal delay={120}>
-                <p className="eyebrow text-primary">Key Advantages</p>
-                <h2 className="mt-3 font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-2">
+                  Key Advantages
+                </p>
+                <h2 className="font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
                   Why Choose SHIVA ENTERPRISES
                 </h2>
                 <div className="mt-8 space-y-4">
@@ -172,38 +168,6 @@ export function ServiceDetailPage() {
                   ))}
                 </div>
               </Reveal>
-
-              {/* Direct Quote Card */}
-              <Reveal
-                delay={160}
-                className="mt-10 rounded-2xl border border-primary/20 bg-primary/5 p-6 sm:p-8"
-              >
-                <h3 className="font-display text-xl font-bold text-foreground">
-                  Need a Customized Quote for Your Home?
-                </h3>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                  Our specialists carry material samples and provide free on-site measurement
-                  anywhere in Chennai.
-                </p>
-                <div className="mt-6 flex flex-wrap gap-3">
-                  <a
-                    href={`https://wa.me/919036657577?text=${encodeURIComponent(
-                      `Hi SHIVA ENTERPRISES, I want a free quote for ${service.name}.`,
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-2.5 text-xs font-bold text-white transition-colors hover:bg-[#20ba59]"
-                  >
-                    <MessageCircle className="h-4 w-4" /> WhatsApp Quote
-                  </a>
-                  <a
-                    href="tel:+919036657577"
-                    className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-5 py-2.5 text-xs font-semibold text-foreground transition-colors hover:border-primary hover:text-primary"
-                  >
-                    <Phone className="h-4 w-4 text-primary" /> Call +91 90366 57577
-                  </a>
-                </div>
-              </Reveal>
             </div>
           </div>
         </div>
@@ -214,8 +178,10 @@ export function ServiceDetailPage() {
         <section className="bg-white py-16 lg:py-24 border-t border-border">
           <div className="mx-auto max-w-7xl px-5 lg:px-10">
             <Reveal className="max-w-2xl">
-              <p className="eyebrow text-muted-foreground">Real Project Photographs</p>
-              <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground mb-2">
+                Real Project Photographs
+              </p>
+              <h2 className="font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
                 Recent {service.shortTitle} Installations
               </h2>
               <p className="mt-3 text-sm text-muted-foreground">
@@ -244,13 +210,27 @@ export function ServiceDetailPage() {
         </section>
       )}
 
+      {/* Embedded Reusable Enquiry Form */}
+      <section className="bg-night py-20 lg:py-28 text-white">
+        <div className="mx-auto max-w-4xl px-5 lg:px-10">
+          <EnquiryForm
+            title={`Get a Free Quote for ${service.name}`}
+            subtitle="Share your balcony measurements or request an on-site laser survey anywhere in Chennai. We'll provide transparent pricing with zero obligations."
+            defaultService={service.name}
+            variant="dark"
+          />
+        </div>
+      </section>
+
       {/* Other Related Services */}
-      <section className="py-16 lg:py-24">
+      <section className="py-16 lg:py-24 border-t border-border">
         <div className="mx-auto max-w-7xl px-5 lg:px-10">
           <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
             <div>
-              <p className="eyebrow text-muted-foreground">Related Services</p>
-              <h2 className="mt-2 font-display text-2xl font-bold text-foreground sm:text-3xl">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground mb-2">
+                Related Services
+              </p>
+              <h2 className="font-display text-2xl font-bold text-foreground sm:text-3xl">
                 Other Balcony Solutions
               </h2>
             </div>

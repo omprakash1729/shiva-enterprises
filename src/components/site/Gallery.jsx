@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { MessageCircle, Phone, X } from "lucide-react";
+import { MessageCircle, Phone, X, ArrowRight } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { cn } from "@/lib/utils";
 
@@ -218,10 +219,17 @@ export function Gallery() {
               Like what you see for your balcony?
             </h3>
             <p className="mt-1 text-sm text-muted-foreground">
-              Get an accurate quote and free measurement visit in Chennai today.
+              Browse our complete collection of installation photos or get an on-site quote in
+              Chennai.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
+            <Link
+              to="/gallery"
+              className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted/60 px-5 py-3 text-xs font-bold text-foreground transition-colors hover:border-primary hover:text-primary"
+            >
+              View Full Gallery Page <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
             <a
               href="https://wa.me/919036657577?text=Hi%2C%20I%20saw%20your%20project%20gallery%20and%20would%20like%20a%20free%20quote%20for%20my%20balcony."
               target="_blank"

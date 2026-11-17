@@ -1,15 +1,21 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import { Menu, X, ChevronDown, Phone, MessageCircle } from "lucide-react";
+import { Menu, X, Phone, MessageCircle } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import { SERVICES } from "@/data/services";
+
+const NAV_LINKS = [
+  { label: "Home", path: "/" },
+  { label: "Services Catalogue", path: "/services" },
+  { label: "Installation", path: "/installation" },
+  { label: "Gallery", path: "/gallery" },
+  { label: "About Us", path: "/about" },
+  { label: "Contact Us", path: "/contact" },
+];
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
   const location = useLocation();
-  const dropdownRef = useRef(null);
 
   const isHome = location.pathname === "/";
 
@@ -27,33 +33,16 @@ export function Navbar() {
     };
   }, [open]);
 
-  // Close dropdown on click outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setServicesOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  // Close menus on route change
+  // Close mobile drawer on route change
   useEffect(() => {
     setOpen(false);
-    setServicesOpen(false);
   }, [location.pathname]);
 
-  const handleNavClick = (to) => {
-    setOpen(false);
-    setServicesOpen(false);
-    if (to.startsWith("/#") && isHome) {
-      const targetId = to.replace("/#", "");
-      const elem = document.getElementById(targetId);
-      if (elem) {
-        elem.scrollIntoView({ behavior: "smooth" });
-      }
+  const isActive = (path) => {
+    if (path === "/") {
+      return location.pathname === "/";
     }
+    return location.pathname.startsWith(path);
   };
 
   return (
@@ -62,8 +51,8 @@ export function Navbar() {
         className={cn(
           "fixed inset-x-0 top-0 z-50 transition-all duration-300",
           scrolled || !isHome
-            ? "border-b border-border/80 bg-background/90 backdrop-blur-md shadow-xs py-2"
-            : "border-b border-transparent bg-background/90 backdrop-blur-md lg:bg-transparent lg:backdrop-blur-none py-3.5",
+            ? "border-b border-border/80 bg-white/95 backdrop-blur-md shadow-xs py-2.5"
+            : "border-b border-transparent bg-white/80 backdrop-blur-md lg:bg-transparent lg:backdrop-blur-none py-3.5",
         )}
       >
         <nav
@@ -72,249 +61,144 @@ export function Navbar() {
         >
           {/* Brand Logo - Pure logo without background container or extra text */}
           <Link
-            to="/#top"
-            onClick={() => handleNavClick("/#top")}
+            to="/"
             aria-label="SHIVA ENTERPRISES Home"
             className="flex items-center transition-opacity hover:opacity-90 shrink-0"
           >
             <img
               src="/images/shiva-enterprises-logo-transparent.png"
               alt="SHIVA ENTERPRISES"
-              className="h-10 sm:h-12 w-auto object-contain"
+              className="h-9 sm:h-11 w-auto object-contain"
             />
           </Link>
 
-          {/* Desktop Navigation Links */}
+          {/* Desktop Navigation Links - Strict Multi-Page, No Dropdowns, No Section Jumps */}
           <div className="hidden items-center gap-7 lg:flex">
-            <Link
-              to="/#top"
-              onClick={() => handleNavClick("/#top")}
-              className={cn(
-                "text-sm font-medium transition-colors hover:text-primary",
-                isHome && !location.hash ? "text-primary font-semibold" : "text-foreground/85",
-              )}
-            >
-              Home
-            </Link>
-
-            {/* Services with Dropdown */}
-            <div className="relative" ref={dropdownRef}>
-              <button
-                type="button"
-                onClick={() => setServicesOpen((v) => !v)}
-                onMouseEnter={() => setServicesOpen(true)}
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
                 className={cn(
-                  "flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary py-2",
-                  location.pathname.startsWith("/services")
-                    ? "text-primary font-semibold"
-                    : "text-foreground/85",
+                  "text-sm font-medium transition-colors hover:text-primary",
+                  isActive(link.path)
+                    ? "text-primary font-semibold border-b-2 border-primary pb-0.5"
+                    : "text-foreground/80 hover:text-foreground",
                 )}
-                aria-expanded={servicesOpen}
               >
-                Services
-                <ChevronDown
-                  className={cn(
-                    "h-4 w-4 transition-transform duration-200",
-                    servicesOpen ? "rotate-180" : "",
-                  )}
-                />
-              </button>
-
-              {servicesOpen && (
-                <div
-                  onMouseLeave={() => setServicesOpen(false)}
-                  className="absolute left-0 top-full w-72 rounded-2xl border border-border bg-white p-2.5 shadow-xl transition-all animate-in fade-in slide-in-from-top-2"
-                >
-                  <Link
-                    to="/services"
-                    className="flex flex-col rounded-xl px-3.5 py-2.5 text-xs transition-colors hover:bg-muted"
-                  >
-                    <span className="font-semibold text-foreground">All Services Catalogue</span>
-                    <span className="text-muted-foreground text-[0.7rem]">
-                      Browse all safety netting & invisible grills
-                    </span>
-                  </Link>
-                  <div className="my-1.5 h-px bg-border/60" />
-                  {SERVICES.map((s) => (
-                    <Link
-                      key={s.slug}
-                      to={`/services/${s.slug}`}
-                      className="flex flex-col rounded-xl px-3.5 py-2 text-xs transition-colors hover:bg-muted"
-                    >
-                      <span className="font-medium text-foreground">{s.name}</span>
-                      <span className="text-muted-foreground text-[0.7rem] line-clamp-1">
-                        {s.tagline}
-                      </span>
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            <Link
-              to="/#installation"
-              onClick={() => handleNavClick("/#installation")}
-              className="text-sm font-medium text-foreground/85 transition-colors hover:text-primary"
-            >
-              Installation
-            </Link>
-
-            <Link
-              to="/#gallery"
-              onClick={() => handleNavClick("/#gallery")}
-              className="text-sm font-medium text-foreground/85 transition-colors hover:text-primary"
-            >
-              Gallery
-            </Link>
-
-            <Link
-              to="/#about"
-              onClick={() => handleNavClick("/#about")}
-              className="text-sm font-medium text-foreground/85 transition-colors hover:text-primary"
-            >
-              About
-            </Link>
-
-            <Link
-              to="/#contact"
-              onClick={() => handleNavClick("/#contact")}
-              className="text-sm font-medium text-foreground/85 transition-colors hover:text-primary"
-            >
-              Contact
-            </Link>
+                {link.label}
+              </Link>
+            ))}
           </div>
 
-          {/* Right Action CTA */}
-          <div className="hidden items-center gap-3 lg:flex">
+          {/* Desktop Actions */}
+          <div className="hidden items-center gap-4 lg:flex">
+            <a
+              href="tel:+919036657577"
+              className="flex items-center gap-1.5 text-xs font-semibold text-foreground/80 transition-colors hover:text-primary"
+            >
+              <Phone className="h-3.5 w-3.5 text-primary" />
+              <span>+91 90366 57577</span>
+            </a>
+
             <Link
-              to="/#contact"
-              onClick={() => handleNavClick("/#contact")}
-              className="rounded-full bg-primary px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-primary-foreground shadow-sm transition-all hover:bg-primary/90 hover:shadow-md"
+              to="/contact"
+              className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-2.5 text-xs font-bold text-primary-foreground shadow-sm transition-all hover:bg-primary/90 hover:shadow-md cursor-pointer"
             >
               Get a Free Quote
             </Link>
           </div>
 
-          {/* Mobile Hamburger Button */}
+          {/* Mobile Menu Toggle */}
           <button
             type="button"
+            onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-label={open ? "Close navigation menu" : "Open navigation menu"}
-            onClick={() => setOpen((v) => !v)}
-            className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-border bg-white/80 text-foreground backdrop-blur-xs lg:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-white text-foreground transition-colors hover:bg-muted lg:hidden cursor-pointer"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </nav>
       </header>
 
-      {/* Mobile Slide-down / Drawer */}
+      {/* Mobile Navigation Drawer */}
       <div
         className={cn(
-          "fixed inset-0 top-[60px] sm:top-[68px] z-40 flex flex-col bg-background px-6 pb-12 pt-6 transition-all duration-300 lg:hidden overflow-y-auto",
-          open ? "visible opacity-100" : "invisible pointer-events-none opacity-0",
+          "fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity duration-300 lg:hidden",
+          open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none",
         )}
+        onClick={() => setOpen(false)}
       >
-        <div className="flex flex-col divide-y divide-border/60">
-          <Link
-            to="/#top"
-            onClick={() => handleNavClick("/#top")}
-            className="py-4 text-lg font-semibold text-foreground transition-colors hover:text-primary"
-          >
-            Home
-          </Link>
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile Navigation"
+          className={cn(
+            "fixed inset-y-0 right-0 z-50 flex w-full max-w-xs flex-col justify-between bg-white p-6 shadow-2xl transition-transform duration-300 ease-in-out",
+            open ? "translate-x-0" : "translate-x-full",
+          )}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div>
+            <div className="flex items-center justify-between pb-6 border-b border-border">
+              <Link to="/" onClick={() => setOpen(false)} className="flex items-center">
+                <img
+                  src="/images/shiva-enterprises-logo-transparent.png"
+                  alt="SHIVA ENTERPRISES"
+                  className="h-8 w-auto object-contain"
+                />
+              </Link>
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                className="grid h-8 w-8 place-items-center rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground cursor-pointer"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
 
-          {/* Expandable Mobile Services */}
-          <div className="py-2">
-            <button
-              type="button"
-              onClick={() => setServicesOpen((v) => !v)}
-              className="flex w-full items-center justify-between py-2.5 text-lg font-semibold text-foreground"
-            >
-              <span>Services</span>
-              <ChevronDown
-                className={cn("h-5 w-5 transition-transform", servicesOpen ? "rotate-180" : "")}
-              />
-            </button>
-            {servicesOpen && (
-              <div className="pl-4 pb-2 pt-1 flex flex-col gap-2">
+            <nav className="mt-6 flex flex-col space-y-1.5">
+              {NAV_LINKS.map((link) => (
                 <Link
-                  to="/services"
+                  key={link.path}
+                  to={link.path}
                   onClick={() => setOpen(false)}
-                  className="py-1 text-sm font-bold text-primary"
+                  className={cn(
+                    "rounded-xl px-4 py-3 text-sm font-semibold transition-colors",
+                    isActive(link.path)
+                      ? "bg-primary/10 text-primary"
+                      : "text-foreground hover:bg-muted",
+                  )}
                 >
-                  All Services Catalogue →
+                  {link.label}
                 </Link>
-                {SERVICES.map((s) => (
-                  <Link
-                    key={s.slug}
-                    to={`/services/${s.slug}`}
-                    onClick={() => setOpen(false)}
-                    className="py-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
-                  >
-                    {s.name}
-                  </Link>
-                ))}
-              </div>
-            )}
+              ))}
+            </nav>
           </div>
 
-          <Link
-            to="/#installation"
-            onClick={() => handleNavClick("/#installation")}
-            className="py-4 text-lg font-semibold text-foreground transition-colors hover:text-primary"
-          >
-            Installation
-          </Link>
-
-          <Link
-            to="/#gallery"
-            onClick={() => handleNavClick("/#gallery")}
-            className="py-4 text-lg font-semibold text-foreground transition-colors hover:text-primary"
-          >
-            Gallery
-          </Link>
-
-          <Link
-            to="/#about"
-            onClick={() => handleNavClick("/#about")}
-            className="py-4 text-lg font-semibold text-foreground transition-colors hover:text-primary"
-          >
-            About
-          </Link>
-
-          <Link
-            to="/#contact"
-            onClick={() => handleNavClick("/#contact")}
-            className="py-4 text-lg font-semibold text-foreground transition-colors hover:text-primary"
-          >
-            Contact
-          </Link>
-        </div>
-
-        {/* Mobile Contact Quick Actions */}
-        <div className="mt-8 flex flex-col gap-3">
-          <Link
-            to="/#contact"
-            onClick={() => handleNavClick("/#contact")}
-            className="flex items-center justify-center gap-2 rounded-xl bg-primary py-3.5 text-center text-sm font-bold text-primary-foreground shadow-sm"
-          >
-            Get a Free Quote
-          </Link>
-          <div className="grid grid-cols-2 gap-3 pt-2">
-            <a
-              href="tel:+919036657577"
-              className="flex items-center justify-center gap-2 rounded-xl border border-border bg-white py-3 text-xs font-semibold text-foreground"
+          <div className="space-y-3 pt-6 border-t border-border">
+            <Link
+              to="/contact"
+              onClick={() => setOpen(false)}
+              className="flex w-full items-center justify-center rounded-xl bg-primary py-3 text-center text-sm font-bold text-primary-foreground shadow-sm hover:bg-primary/90"
             >
-              <Phone className="h-4 w-4 text-primary" /> Call Now
-            </a>
+              Get a Free Quote
+            </Link>
+
             <a
-              href="https://wa.me/919036657577?text=Hi%20SHIVA%20ENTERPRISES%2C%20I%20am%20interested%20in%20your%20services."
+              href="https://wa.me/919036657577?text=Hi%20SHIVA%20ENTERPRISES%2C%20I%20would%20like%20to%20enquire%20about%20your%20services."
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 rounded-xl border border-[#25D366] bg-[#25D366]/10 py-3 text-xs font-semibold text-[#128C7E]"
+              className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#25D366] py-3 text-sm font-semibold text-white shadow-xs hover:bg-[#20ba59]"
             >
-              <MessageCircle className="h-4 w-4 text-[#25D366]" /> WhatsApp
+              <MessageCircle className="h-4 w-4" /> WhatsApp Chat
+            </a>
+
+            <a
+              href="tel:+919036657577"
+              className="flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-muted/60 py-3 text-sm font-semibold text-foreground hover:bg-muted"
+            >
+              <Phone className="h-4 w-4 text-primary" /> Call +91 90366 57577
             </a>
           </div>
         </div>

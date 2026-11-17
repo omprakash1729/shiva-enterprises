@@ -2,16 +2,18 @@ import { Phone, MapPin, MessageCircle, Instagram, Facebook, Youtube } from "luci
 import { Link } from "react-router-dom";
 
 const NAV = [
-  { label: "Home", to: "/#top" },
+  { label: "Home", to: "/" },
   { label: "Services Catalogue", to: "/services" },
   { label: "Invisible Grills", to: "/services/invisible-grills" },
-  { label: "Pigeon Safety Nets", to: "/services/pigeon-safety-nets" },
-  { label: "Horizontal Grills", to: "/services/horizontal-safety-grills" },
-  { label: "Terrace Safety Nets", to: "/services/terrace-safety-nets" },
-  { label: "Balcony Artificial Turf", to: "/services/balcony-artificial-turf" },
-  { label: "Installation Process", to: "/#installation" },
-  { label: "Project Gallery", to: "/#gallery" },
-  { label: "Contact Us", to: "/#contact" },
+  { label: "Bird Protection Nets", to: "/services/bird-protection-nets" },
+  { label: "Balcony Safety Nets", to: "/services/balcony-safety-nets" },
+  { label: "Vertical Grills", to: "/services/vertical-grills" },
+  { label: "Horizontal Grills", to: "/services/horizontal-grills" },
+  { label: "Terrace & Turf Nets", to: "/services/terrace-nets" },
+  { label: "Installation Process", to: "/installation" },
+  { label: "Project Gallery", to: "/gallery" },
+  { label: "About Us", to: "/about" },
+  { label: "Contact Us", to: "/contact" },
 ];
 
 const SOCIALS = [
@@ -28,14 +30,14 @@ export function Footer() {
           {/* Brand Info */}
           <div>
             <Link
-              to="/#top"
-              aria-label="SHIVA ENTERPRISES home"
-              className="inline-block transition-opacity hover:opacity-90"
+              to="/"
+              aria-label="SHIVA ENTERPRISES Home"
+              className="inline-block transition-opacity hover:opacity-90 shrink-0"
             >
               <img
                 src="/images/shiva-enterprises-logo-light.png"
                 alt="SHIVA ENTERPRISES"
-                className="h-11 sm:h-12 w-auto object-contain"
+                className="h-10 sm:h-12 w-auto object-contain"
               />
             </Link>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-night-foreground/65">
@@ -59,8 +61,10 @@ export function Footer() {
 
           {/* Services & Pages Navigation */}
           <div>
-            <p className="eyebrow text-night-foreground/40">Services & Navigation</p>
-            <ul className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2.5">
+            <p className="text-xs font-bold uppercase tracking-wider text-night-foreground/40 mb-4">
+              Services & Navigation
+            </p>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2.5">
               {NAV.map((l) => (
                 <li key={l.label}>
                   <Link
@@ -76,8 +80,10 @@ export function Footer() {
 
           {/* Contact Details */}
           <div>
-            <p className="eyebrow text-night-foreground/40">Contact Information</p>
-            <ul className="mt-5 space-y-4 text-sm text-night-foreground/75">
+            <p className="text-xs font-bold uppercase tracking-wider text-night-foreground/40 mb-4">
+              Contact Information
+            </p>
+            <ul className="space-y-4 text-sm text-night-foreground/75">
               <li>
                 <a
                   href="tel:+919036657577"

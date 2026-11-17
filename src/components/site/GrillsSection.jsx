@@ -196,13 +196,13 @@ export function GrillsSection() {
         </div>
 
         <Reveal className="mt-16 flex flex-wrap items-center gap-4">
-          <a
-            href="#installation"
+          <Link
+            to="/installation"
             className="group inline-flex items-center gap-3 rounded-full bg-primary px-7 py-4 text-sm font-semibold text-primary-foreground transition-all hover:bg-primary/90 hover:shadow-[0_16px_40px_-16px_var(--color-primary)]"
           >
             Explore Invisible Grill Installation
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </a>
+          </Link>
           <Link
             to="/services/invisible-grills"
             className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-6 py-4 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-primary-foreground"

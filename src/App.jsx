@@ -7,6 +7,10 @@ import { ScrollToTop } from "@/components/site/ScrollToTop";
 import { HomePage } from "@/pages/HomePage";
 import { ServicesCataloguePage } from "@/pages/ServicesCataloguePage";
 import { ServiceDetailPage } from "@/pages/ServiceDetailPage";
+import { InstallationPage } from "@/pages/InstallationPage";
+import { GalleryPage } from "@/pages/GalleryPage";
+import { AboutPage } from "@/pages/AboutPage";
+import { ContactPage } from "@/pages/ContactPage";
 
 export default function App() {
   return (
@@ -17,6 +21,10 @@ export default function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/services" element={<ServicesCataloguePage />} />
         <Route path="/services/:slug" element={<ServiceDetailPage />} />
+        <Route path="/installation" element={<InstallationPage />} />
+        <Route path="/gallery" element={<GalleryPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/contact" element={<ContactPage />} />
         {/* Fallback to home */}
         <Route path="*" element={<HomePage />} />
       </Routes>

@@ -1,26 +1,30 @@
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 import { Reveal } from "./Reveal";
+
 const STEPS = [
   {
     n: "01",
-    t: "Consultation",
-    d: "Understand your requirements and the type of balcony or property.",
+    t: "Consultation & Survey",
+    d: "Same-day on-site inspection across Chennai. We assess your balcony structure, railing height, and family safety needs.",
   },
   {
     n: "02",
-    t: "Measurement",
-    d: "Assess the balcony dimensions and identify the most suitable installation method.",
+    t: "Laser Measurement",
+    d: "Precision laser measurement ensures exact track length, bolt spacing, and tension specifications before fabrication.",
   },
   {
     n: "03",
-    t: "Installation",
-    d: "Install the selected invisible net or grill system using the appropriate components.",
+    t: "Certified Installation",
+    d: "Our in-house technicians install heavy-duty aluminium tracks, anchor SS 316 cables, and lock uniform high tension.",
   },
   {
     n: "04",
-    t: "Final Inspection",
-    d: "Review the installation finish, coverage, alignment, and connections.",
+    t: "Load Testing & Warranty",
+    d: "We conduct physical tensile load testing (220+ kg load capacity) and issue an official 5-year written warranty certificate.",
   },
 ];
+
 export function Process() {
   return (
     <section id="installation" className="scroll-mt-16 bg-background py-24 lg:py-32">
@@ -31,6 +35,7 @@ export function Process() {
             From consultation to protection.
           </h2>
         </Reveal>
+
         <div className="mt-16 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
           {STEPS.map((s, i) => (
             <Reveal key={s.n} delay={i * 100}>
@@ -43,6 +48,15 @@ export function Process() {
               </div>
             </Reveal>
           ))}
+        </div>
+
+        <div className="mt-12 text-center">
+          <Link
+            to="/installation"
+            className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-6 py-3 text-xs sm:text-sm font-semibold text-foreground shadow-xs transition-colors hover:border-primary hover:text-primary"
+          >
+            Explore Complete Installation Standards & Steps <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </div>
     </section>

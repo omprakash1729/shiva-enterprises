@@ -157,7 +157,7 @@ export function NetsSection() {
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </a>
           <Link
-            to="/services/pigeon-safety-nets"
+            to="/services/bird-protection-nets"
             className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-6 py-4 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
           >
             <BookOpen className="h-4 w-4" /> View Technical Catalogue
