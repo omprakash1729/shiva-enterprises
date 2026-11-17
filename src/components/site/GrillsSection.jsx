@@ -1,7 +1,8 @@
-import grillsVerticalImg from "@/assets/grills-showcase.webp";
-import grillsHorizontalImg from "@/assets/grills-horizontal.webp";
-import hookImg from "@/assets/wire-hook-closeup.webp";
-import { ArrowRight } from "lucide-react";
+import grillsVerticalImg from "@/assets/projects/vertical-grill-11.webp";
+import grillsHorizontalImg from "@/assets/projects/horizontal-grill.webp";
+import hookImg from "@/assets/projects/horizontal-grill-2.webp";
+import { ArrowRight, BookOpen, MessageCircle, Phone } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Reveal } from "./Reveal";
 const SPECS = [
   ["Material", "316 Marine-Grade Stainless Steel"],
@@ -135,14 +136,14 @@ export function GrillsSection() {
           <Reveal delay={150} className="lg:col-span-6">
             <img
               src={hookImg}
-              alt="Close-up of a stainless steel hook securing a nylon-coated SS 316 wire to an aluminium rail"
-              width={1024}
-              height={1024}
+              alt="Close-up of stainless steel fasteners and nylon-coated SS 316 wire installation by SHIVA ENTERPRISES"
+              width={622}
+              height={624}
               loading="lazy"
-              className="aspect-[4/5] w-full object-cover"
+              className="aspect-square w-full rounded-2xl object-cover shadow-sm"
             />
             <p className="mt-3 text-xs text-muted-foreground">
-              SS 316 wire seated in a steel hook on the mounting rail.
+              Marine-grade SS 316 wire cable seated securely in heavy-duty mounting fasteners.
             </p>
           </Reveal>
         </div>
@@ -160,29 +161,29 @@ export function GrillsSection() {
               {
                 img: grillsVerticalImg,
                 t: "Vertical Installation",
-                d: "A clean vertical wire arrangement.",
-                alt: "Balcony with vertical stainless steel invisible grill wires",
+                d: "A clean vertical wire arrangement optimal for balconies and child safety.",
+                alt: "Balcony fitted with vertical stainless steel invisible grills by SHIVA ENTERPRISES",
               },
               {
                 img: grillsHorizontalImg,
                 t: "Horizontal Installation",
-                d: "A clean horizontal wire arrangement.",
-                alt: "Balcony with horizontal stainless steel invisible grill wires",
+                d: "A sleek horizontal wire arrangement suitable for wide windows and parapet walls.",
+                alt: "Apartment balcony with horizontal stainless steel invisible safety grills",
               },
             ].map((o, i) => (
               <Reveal key={o.t} delay={i * 100}>
                 <figure className="group">
-                  <div className="overflow-hidden">
+                  <div className="overflow-hidden rounded-2xl bg-muted">
                     <img
                       src={o.img}
                       alt={o.alt}
-                      width={1024}
-                      height={1024}
+                      width={1600}
+                      height={2132}
                       loading="lazy"
                       className="aspect-[4/3] w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]"
                     />
                   </div>
-                  <figcaption className="mt-4 flex items-baseline justify-between gap-4">
+                  <figcaption className="mt-4 flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
                     <span className="font-display text-lg font-semibold text-foreground">
                       {o.t}
                     </span>
@@ -194,13 +195,33 @@ export function GrillsSection() {
           </div>
         </div>
 
-        <Reveal className="mt-16">
+        <Reveal className="mt-16 flex flex-wrap items-center gap-4">
           <a
             href="#installation"
-            className="group inline-flex items-center gap-3 text-sm font-semibold text-primary"
+            className="group inline-flex items-center gap-3 rounded-full bg-primary px-7 py-4 text-sm font-semibold text-primary-foreground transition-all hover:bg-primary/90 hover:shadow-[0_16px_40px_-16px_var(--color-primary)]"
           >
             Explore Invisible Grill Installation
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </a>
+          <Link
+            to="/services/invisible-grills"
+            className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-6 py-4 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+          >
+            <BookOpen className="h-4 w-4" /> View Technical Catalogue
+          </Link>
+          <a
+            href="https://wa.me/919036657577?text=Hi%2C%20I%20would%20like%20a%20free%20quote%20for%20balcony%20invisible%20grills."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-6 py-4 text-sm font-semibold text-foreground transition-colors hover:border-[#25D366] hover:bg-[#25D366]/5 hover:text-[#128C7E]"
+          >
+            <MessageCircle className="h-4 w-4 text-[#25D366]" /> Chat on WhatsApp
+          </a>
+          <a
+            href="tel:+919036657577"
+            className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-6 py-4 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:bg-primary/5 hover:text-primary"
+          >
+            <Phone className="h-4 w-4 text-primary" /> Call +91 90366 57577
           </a>
         </Reveal>
       </div>

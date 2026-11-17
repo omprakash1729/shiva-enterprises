@@ -1,41 +1,28 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "sonner";
-import { Applications } from "@/components/site/Applications";
-import { BeforeAfter } from "@/components/site/BeforeAfter";
-import { Contact } from "@/components/site/Contact";
-import { Faq } from "@/components/site/Faq";
-import { Footer } from "@/components/site/Footer";
-import { Gallery } from "@/components/site/Gallery";
-import { GrillsSection } from "@/components/site/GrillsSection";
-import { HeroScrub } from "@/components/site/HeroScrub";
-import { Intro } from "@/components/site/Intro";
 import { Navbar } from "@/components/site/Navbar";
-import { NetsSection } from "@/components/site/NetsSection";
-import { Process } from "@/components/site/Process";
-import { Solutions } from "@/components/site/Solutions";
-import { Trust } from "@/components/site/Trust";
-import { WhyUs } from "@/components/site/WhyUs";
+import { Footer } from "@/components/site/Footer";
+import { FloatingContact } from "@/components/site/FloatingContact";
+import { ScrollToTop } from "@/components/site/ScrollToTop";
+import { HomePage } from "@/pages/HomePage";
+import { ServicesCataloguePage } from "@/pages/ServicesCataloguePage";
+import { ServiceDetailPage } from "@/pages/ServiceDetailPage";
 
 export default function App() {
   return (
-    <>
+    <BrowserRouter>
+      <ScrollToTop />
       <Navbar />
-      <main>
-        <HeroScrub />
-        <Intro />
-        <Solutions />
-        <NetsSection />
-        <GrillsSection />
-        <BeforeAfter />
-        <Process />
-        <Applications />
-        <WhyUs />
-        <Trust />
-        <Gallery />
-        <Faq />
-        <Contact />
-      </main>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/services" element={<ServicesCataloguePage />} />
+        <Route path="/services/:slug" element={<ServiceDetailPage />} />
+        {/* Fallback to home */}
+        <Route path="*" element={<HomePage />} />
+      </Routes>
       <Footer />
+      <FloatingContact />
       <Toaster position="bottom-right" richColors />
-    </>
+    </BrowserRouter>
   );
 }

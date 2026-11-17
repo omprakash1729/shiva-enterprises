@@ -1,8 +1,9 @@
-import netsImg from "@/assets/nets-showcase.webp";
-import closeupImg from "@/assets/net-closeup.webp";
-import installImg from "@/assets/installation-work.webp";
-import buildingImg from "@/assets/building-exterior.webp";
-import { ArrowRight } from "lucide-react";
+import netsImg from "@/assets/projects/pegion-net-2.webp";
+import closeupImg from "@/assets/projects/pegion-net-4.webp";
+import installImg from "@/assets/projects/pegion-net-8.webp";
+import buildingImg from "@/assets/projects/pegion-net-12.webp";
+import { ArrowRight, BookOpen, MessageCircle, Phone } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Reveal } from "./Reveal";
 const BENEFITS = [
   {
@@ -57,9 +58,9 @@ export function NetsSection() {
           <Reveal className="col-span-2 lg:col-span-7">
             <img
               src={netsImg}
-              alt="Balcony after installation of transparent bird protection netting"
-              width={1024}
-              height={1024}
+              alt="Balcony pigeon safety net installation in Chennai apartment by SHIVA ENTERPRISES"
+              width={1600}
+              height={2132}
               loading="lazy"
               className="aspect-[4/3] h-full w-full object-cover"
             />
@@ -67,9 +68,9 @@ export function NetsSection() {
           <Reveal delay={100} className="lg:col-span-5">
             <img
               src={closeupImg}
-              alt="Close-up of fine transparent netting stretched across a balcony railing"
-              width={1024}
-              height={1024}
+              alt="Close-up of durable transparent bird protection netting fixed to balcony frame"
+              width={1600}
+              height={2132}
               loading="lazy"
               className="aspect-square h-full w-full object-cover"
             />
@@ -77,9 +78,9 @@ export function NetsSection() {
           <Reveal delay={160} className="lg:col-span-5">
             <img
               src={installImg}
-              alt="Installer carefully fitting netting along a balcony railing"
-              width={1024}
-              height={1024}
+              alt="High-rise balcony edge safety net installation work by SHIVA ENTERPRISES"
+              width={1600}
+              height={2132}
               loading="lazy"
               className="aspect-square h-full w-full object-cover"
             />
@@ -87,9 +88,9 @@ export function NetsSection() {
           <Reveal delay={220} className="col-span-2 lg:col-span-7">
             <img
               src={buildingImg}
-              alt="Apartment building exterior with netted balconies blending into the facade"
-              width={1024}
-              height={1024}
+              alt="Apartment building balcony protected with pigeon netting preserving exterior aesthetics"
+              width={1600}
+              height={2132}
               loading="lazy"
               className="aspect-[4/3] h-full w-full object-cover lg:aspect-[16/10]"
             />
@@ -147,13 +148,33 @@ export function NetsSection() {
           </div>
         </div>
 
-        <Reveal className="mt-16 flex justify-start">
+        <Reveal className="mt-16 flex flex-wrap items-center gap-4">
           <a
             href="#contact"
             className="group inline-flex items-center gap-3 rounded-full bg-primary px-7 py-4 text-sm font-semibold text-primary-foreground transition-all hover:bg-primary/90 hover:shadow-[0_16px_40px_-16px_var(--color-primary)]"
           >
             Get a Customised Net Installation Quote
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </a>
+          <Link
+            to="/services/pigeon-safety-nets"
+            className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-6 py-4 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+          >
+            <BookOpen className="h-4 w-4" /> View Technical Catalogue
+          </Link>
+          <a
+            href="https://wa.me/919036657577?text=Hi%2C%20I%20would%20like%20a%20free%20quote%20for%20balcony%20bird%20protection%20nets."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-6 py-4 text-sm font-semibold text-foreground transition-colors hover:border-[#25D366] hover:bg-[#25D366]/5 hover:text-[#128C7E]"
+          >
+            <MessageCircle className="h-4 w-4 text-[#25D366]" /> Chat on WhatsApp
+          </a>
+          <a
+            href="tel:+919036657577"
+            className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-6 py-4 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:bg-primary/5 hover:text-primary"
+          >
+            <Phone className="h-4 w-4 text-primary" /> Call +91 90366 57577
           </a>
         </Reveal>
       </div>

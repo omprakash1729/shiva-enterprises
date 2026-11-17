@@ -1,5 +1,6 @@
-import introImg from "@/assets/intro-balcony.webp";
+import introImg from "@/assets/projects/vertical-grill-13.webp";
 import { Reveal } from "./Reveal";
+import { ArrowRight, MessageCircle, Phone } from "lucide-react";
 export function Intro() {
   return (
     <section id="about" className="scroll-mt-16 bg-background py-24 lg:py-36">
@@ -34,9 +35,9 @@ export function Intro() {
             <div className="overflow-hidden">
               <img
                 src={introImg}
-                alt="A calm modern apartment balcony opening onto an unobstructed city view"
-                width={1024}
-                height={1024}
+                alt="Modern apartment balcony in Chennai fitted with invisible safety grills by SHIVA ENTERPRISES"
+                width={1600}
+                height={1200}
                 loading="lazy"
                 decoding="async"
                 className="aspect-[4/3] w-full object-cover transition-transform duration-[1200ms] ease-out hover:scale-[1.03] lg:aspect-[16/10]"

@@ -1,20 +1,36 @@
-import installImg from "@/assets/installation-work.webp";
+import installImg from "@/assets/projects/vertical-grill-15.webp";
 import { Reveal } from "./Reveal";
 const FEATURES = [
-  { n: "01", t: "Quality Materials", d: "Selected materials chosen for the space they protect." },
-  { n: "02", t: "Customised Solutions", d: "Every balcony measured and planned individually." },
+  {
+    n: "01",
+    t: "Grade 316 Marine Stainless Steel",
+    d: "High-tensile, rust-proof SS 316 cables with transparent nylon coating engineered to endure humid coastal Chennai weather.",
+  },
+  {
+    n: "02",
+    t: "Free On-Site Inspection & Measurement",
+    d: "Our experts visit your apartment or villa to measure dimensions accurately and provide honest, transparent quotation.",
+  },
   {
     n: "03",
-    t: "Professional Installation",
-    d: "Fitted carefully, finished cleanly, checked on site.",
+    t: "Skilled In-House Technicians",
+    d: "Fitted by our own trained installation specialists with over 2,500+ successful installations across Chennai & Tamil Nadu.",
   },
   {
     n: "04",
-    t: "Minimal Visual Impact",
-    d: "Protection designed to disappear into your architecture.",
+    t: "Unobstructed Views & Ventilation",
+    d: "Discreet safety and bird barrier solutions designed to disappear into your home architecture without compromising breeze or light.",
   },
-  { n: "05", t: "Attention to Detail", d: "Edges, corners and fixings finished with care." },
-  { n: "06", t: "Reliable Customer Support", d: "We stay reachable long after the installation." },
+  {
+    n: "05",
+    t: "Tested Safety Load Resistance",
+    d: "Grill systems tested for up to 400 kg tensile impact resistance, providing robust safety for children and pets.",
+  },
+  {
+    n: "06",
+    t: "Reliable Support & Warranty",
+    d: "Committed after-sales service with specified durability of up to 20 years on stainless steel systems.",
+  },
 ];
 export function WhyUs() {
   return (
@@ -22,18 +38,20 @@ export function WhyUs() {
       <div className="mx-auto max-w-7xl px-5 lg:px-10">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-5">
-            <p className="eyebrow text-muted-foreground">Why Choose Us</p>
+            <p className="eyebrow text-muted-foreground">Why Choose SHIVA ENTERPRISES</p>
             <h2 className="mt-5 font-display text-4xl font-bold leading-[1.05] tracking-tight text-foreground lg:text-6xl">
               Protection is in the details.
             </h2>
-            <img
-              src={installImg}
-              alt="Installer tensioning netting along a balcony railing"
-              width={1024}
-              height={1024}
-              loading="lazy"
-              className="mt-10 aspect-[4/5] w-full object-cover lg:mt-14"
-            />
+            <div className="mt-10 overflow-hidden rounded-2xl bg-muted shadow-md lg:mt-14">
+              <img
+                src={installImg}
+                alt="Precision installation of vertical invisible grills on an apartment balcony by SHIVA ENTERPRISES"
+                width={1600}
+                height={2132}
+                loading="lazy"
+                className="aspect-[4/5] w-full object-cover transition-transform duration-700 hover:scale-105"
+              />
+            </div>
           </Reveal>
           <div className="lg:col-span-7 lg:pt-20">
             {FEATURES.map((f, i) => (

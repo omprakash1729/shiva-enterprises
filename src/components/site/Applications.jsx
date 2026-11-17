@@ -1,34 +1,34 @@
-import buildingImg from "@/assets/building-exterior.webp";
-import residentialImg from "@/assets/after-protected.webp";
-import commercialImg from "@/assets/commercial-building.webp";
-import utilityImg from "@/assets/nets-showcase.webp";
+import grillsAppImg from "@/assets/projects/vertical-grill-12.webp";
+import netsAppImg from "@/assets/projects/pegion-net-3.webp";
+import terraceAppImg from "@/assets/projects/home-terrace-net-poster.webp";
+import turfAppImg from "@/assets/projects/turf-3.webp";
 import { Reveal } from "./Reveal";
 const SPACES = [
   {
-    img: buildingImg,
-    t: "High-rise apartments",
-    alt: "Modern high-rise apartment building with glass balcony railings",
+    img: grillsAppImg,
+    t: "High-Rise Balcony Invisible Grills",
+    alt: "High-rise apartment balcony fitted with SS 316 invisible grills by SHIVA ENTERPRISES",
     span: "col-span-2 row-span-2 lg:col-span-7 lg:row-span-2",
     ratio: "aspect-[4/3] lg:aspect-auto lg:h-full",
   },
   {
-    img: residentialImg,
-    t: "Residential balconies",
-    alt: "Residential balcony fitted with invisible protection",
+    img: netsAppImg,
+    t: "Residential Balcony Bird Nets",
+    alt: "Apartment balcony with transparent pigeon safety netting installation in Chennai",
     span: "lg:col-span-5",
     ratio: "aspect-[4/3]",
   },
   {
-    img: commercialImg,
-    t: "Commercial buildings",
-    alt: "Contemporary commercial building facade with rows of balconies",
+    img: terraceAppImg,
+    t: "Terrace & Rooftop Safety Nets",
+    alt: "Full terrace enclosure safety netting for villas and independent homes",
     span: "lg:col-span-5",
     ratio: "aspect-[4/3]",
   },
   {
-    img: utilityImg,
-    t: "Multi-storey residential properties",
-    alt: "Apartment balcony with transparent netting spanning the opening",
+    img: turfAppImg,
+    t: "Balcony Artificial Turf & Greenery",
+    alt: "Premium artificial grass turf installed on residential balcony by SHIVA ENTERPRISES",
     span: "col-span-2 lg:col-span-12",
     ratio: "aspect-[16/9] lg:aspect-[21/9]",
   },

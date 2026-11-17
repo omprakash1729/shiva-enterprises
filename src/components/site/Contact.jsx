@@ -6,6 +6,8 @@ const WHATSAPP_NUMBER = "919036657577";
 const INTERESTS = [
   { value: "nets", label: "Bird Protection Nets" },
   { value: "grills", label: "Invisible Grills" },
+  { value: "terrace", label: "Terrace Safety Nets" },
+  { value: "turf", label: "Balcony Artificial Turf" },
   { value: "both", label: "Both" },
 ];
 const inputClass =

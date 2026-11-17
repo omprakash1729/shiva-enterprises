@@ -7,35 +7,30 @@ const MIN_SEEK_DELTA = 1 / VIDEO_FPS;
 const MIN_SEEK_INTERVAL_MS = 1000 / VIDEO_FPS;
 const SCENES = [
   {
-    eyebrow: "Scene 01 · The Problem",
     title: "Your balcony deserves a better view.",
     text: "Enjoy your outdoor space without unwanted visitors.",
     range: [0, 0.2],
     pos: "left-6 top-[36%] max-w-md lg:left-16 lg:top-[38%] lg:max-w-xl",
   },
   {
-    eyebrow: "Scene 02 · The Solution",
     title: "Protection you barely notice.",
     text: "Advanced transparent bird protection nets designed to blend naturally with your architecture.",
     range: [0.2, 0.4],
     pos: "right-6 top-[30%] max-w-md text-left lg:right-16 lg:top-[36%] lg:max-w-xl",
   },
   {
-    eyebrow: "Scene 03 · Precision Installation",
     title: "Designed to disappear.",
     text: "Preserve your balcony's openness, natural light, and architectural beauty.",
     range: [0.4, 0.6],
     pos: "left-6 bottom-[14%] max-w-md lg:left-16 lg:bottom-[18%] lg:max-w-xl",
   },
   {
-    eyebrow: "Scene 04 · Protection in Action",
     title: "Keep unwanted birds out.",
     text: "A discreet protective barrier that helps prevent pigeons and other birds from entering your balcony.",
     range: [0.6, 0.82],
     pos: "right-6 bottom-[14%] max-w-md lg:right-16 lg:bottom-[18%] lg:max-w-xl",
   },
   {
-    eyebrow: "Scene 05 · Final Message",
     title: "An open view. A protected space.",
     text: "Discover a smarter way to protect your balcony.",
     range: [0.82, 1.01],
@@ -69,9 +64,7 @@ export function HeroScrub() {
     mq.addEventListener("change", onChange);
     return () => mq.removeEventListener("change", onChange);
   }, []);
- const videoSrc = isMobile
-  ? "/media/hero-mobile-scrub.mp4"
-  : "/media/hero-desktop-scrub.mp4";
+  const videoSrc = isMobile ? "/media/hero-mobile-scrub.mp4" : "/media/hero-desktop-scrub.mp4";
   const posterSrc = isMobile ? "/media/hero-poster-mobile.jpg" : "/media/hero-poster-desktop.jpg";
   useEffect(() => {
     const wrap = wrapRef.current;
@@ -225,7 +218,6 @@ export function HeroScrub() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-night/85 via-night/25 to-transparent" />
         <div className="relative mx-auto w-full max-w-7xl px-5 pb-24 lg:px-10">
-          <p className="eyebrow text-night-foreground/70">Scene 01 · The Problem</p>
           <h1 className="mt-4 max-w-2xl font-display text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
             Your balcony deserves a better view.
           </h1>
@@ -285,7 +277,7 @@ export function HeroScrub() {
         {/* Scene overlays */}
         {SCENES.map((scene, i) => (
           <div
-            key={scene.eyebrow}
+            key={scene.title}
             aria-hidden={active !== i}
             className={cn(
               scene.final
@@ -304,10 +296,9 @@ export function HeroScrub() {
                 active === i && "bg-black/35 shadow-lg",
               )}
             >
-              <p className="eyebrow text-white/95">{scene.eyebrow}</p>
               <h1
                 className={cn(
-                  "mt-3 font-display font-bold leading-[1.06] tracking-tight text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]",
+                  "font-display font-bold leading-[1.06] tracking-tight text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]",
                   scene.final
                     ? "text-3xl sm:text-5xl lg:text-6xl"
                     : "text-2xl sm:text-4xl lg:text-5xl",
@@ -357,16 +348,6 @@ export function HeroScrub() {
               }}
             />
           </div>
-        </div>
-        <div className="pointer-events-none absolute bottom-8 right-6 hidden items-center gap-3 rounded-full bg-black/20 px-3 py-1.5 text-[0.65rem] font-medium uppercase tracking-[0.2em] text-white/90 shadow-sm sm:flex">
-          <span>0{active + 1}</span>
-          <span className="relative h-px w-16 bg-white/25">
-            <span
-              className="absolute inset-y-0 left-0 bg-white/90 transition-[width] duration-300"
-              style={{ width: `${Math.round(((active + 1) / SCENES.length) * 100)}%` }}
-            />
-          </span>
-          <span>05</span>
         </div>
       </div>
     </section>
